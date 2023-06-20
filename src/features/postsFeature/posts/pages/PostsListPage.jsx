@@ -11,12 +11,23 @@ import Button from "src/components/Button";
 import { fetchPosts } from "../../thunks";
 
 const PostsListPage = () => {
-  const [isSlideOverOpen, setIsSliderOverOpen] = useState(false);
-
   const dispatch = useDispatch();
   const postsState = useSelector(selectAllPosts);
 
+  const [isSlideOverOpen, setIsSliderOverOpen] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+
   const { posts, isLoading, error } = postsState || {};
+
+  const searchData = posts?.filter((post) => {
+    if (searchInput === "") {
+      return post;
+    }
+    const searchByPhone = post.title?.toLowerCase()?.includes(searchInput);
+    const searchByName = post.body?.toLowerCase()?.includes(searchInput);
+
+    return searchByName || searchByPhone;
+  });
 
   useEffect(() => {
     if (posts?.length === 0) dispatch(fetchPosts());
@@ -28,6 +39,7 @@ const PostsListPage = () => {
         <PostsHeader
           title={<h2 className='font-bold text-2xl'>Posts</h2>}
           setIsSliderOverOpen={setIsSliderOverOpen}
+          setSearchInput={setSearchInput}
         />
         <div className='py-4 px-6 h-full'>
           {error ? (
@@ -46,7 +58,7 @@ const PostsListPage = () => {
                   ? Array.from([...Array(4)].keys()).map((num) => (
                       <Post key={num} isLoading={isLoading} />
                     ))
-                  : posts?.map((post) => (
+                  : searchData?.map((post) => (
                       <Post key={post.id} post={post} isLoading={isLoading} />
                     ))}
               </div>
