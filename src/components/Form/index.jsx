@@ -23,7 +23,7 @@ const Form = ({ setIsSliderOverOpen, defaultValues }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='h-full flex gap-8 flex-col mt-10 mx-4'
+      className='h-full flex gap-8 flex-col mt-6 mx-4'
     >
       <div className='flex justify-between items-center'>
         <div className='flex items-center gap-1'>
