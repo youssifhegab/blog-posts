@@ -2,8 +2,8 @@ import { BiArrowBack, BiSave } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
+import { addNewPost, updatePost } from "src/features/postsFeature/thunks";
 import Button from "../Button";
-import { postAdded } from "src/features/postsFeature/postsSlice";
 
 const Form = ({ setIsSliderOverOpen, defaultValues }) => {
   const { register, handleSubmit } = useForm({ defaultValues });
@@ -11,9 +11,15 @@ const Form = ({ setIsSliderOverOpen, defaultValues }) => {
 
   const onSubmit = (data) => {
     console.log({ data });
-    dispatch(postAdded(data));
-    setIsSliderOverOpen(false);
+    try {
+      if (defaultValues) dispatch(updatePost(data, defaultValues.id));
+      else dispatch(addNewPost(data));
+      setIsSliderOverOpen(false);
+    } catch (e) {
+      console.log(e);
+    }
   };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

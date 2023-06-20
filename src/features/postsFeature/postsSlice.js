@@ -1,20 +1,11 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axiosClient from "../../service/client";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchPosts, addNewPost, updatePost, deletePost } from "./thunks";
 
 const initialState = {
   posts: [],
   isLoading: true,
   error: "",
 };
-
-export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
-  try {
-    const response = await axiosClient({ url: "/posts", method: "GET" });
-    return [...response.data];
-  } catch (err) {
-    return err.message;
-  }
-});
 
 const postsSlice = createSlice({
   name: "posts",
@@ -36,6 +27,24 @@ const postsSlice = createSlice({
       .addCase(fetchPosts.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload.message;
+      })
+      .addCase(addNewPost.fulfilled, (state, action) => {
+        state.posts.unshift(action.payload);
+      })
+      .addCase(updatePost.fulfilled, (state, action) => {
+        if (!action.payload?.id) {
+          return;
+        }
+        const { id } = action.payload;
+        const posts = state.posts.filter((post) => post.id !== id);
+        state.posts = [action.payload, ...posts];
+      })
+      .addCase(deletePost.fulfilled, (state, action) => {
+        if (!action.payload) {
+          return;
+        }
+        const posts = state.posts.filter((post) => post.id !== action.payload);
+        state.posts = posts;
       });
   },
 });

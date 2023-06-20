@@ -1,6 +1,14 @@
-import Button from "src/components/Button";
+import { useDispatch } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
 
-const ModalContent = ({ setIsModalOpen }) => {
+import Button from "src/components/Button";
+import { deletePost } from "../../thunks";
+
+const DeleteModal = ({ setIsModalOpen }) => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <div className='flex flex-col justify-between h-full items-center mt-8 mb-4 mx-4'>
       <p className='font-bold text-lg text-left'>
@@ -14,7 +22,11 @@ const ModalContent = ({ setIsModalOpen }) => {
         />
         <Button
           text='Yes, I want'
-          onClick={() => setIsModalOpen(false)}
+          onClick={() => {
+            dispatch(deletePost(parseInt(id)));
+            setIsModalOpen(false);
+            navigate(-1);
+          }}
           variant='danger'
         />
       </div>
@@ -22,4 +34,4 @@ const ModalContent = ({ setIsModalOpen }) => {
   );
 };
 
-export default ModalContent;
+export default DeleteModal;

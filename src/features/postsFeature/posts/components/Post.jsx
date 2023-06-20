@@ -21,7 +21,7 @@ const Post = ({ post, isLoading }) => {
         transition={{ duration: 0.3 }}
         className='w-full bg-white rounded-lg py-4 px-5 shadow-md cursor-pointer'
       >
-        <p className='mb-4 font-semibold text-lg truncate'>{title}</p>
+        <p className='mb-4 font-semibold text-lg'>{title}</p>
         <p className='text-gray-500 truncate'>{body}</p>
       </motion.div>
     </Link>

@@ -7,15 +7,14 @@ import Form from "src/components/Form";
 import SlideOver from "src/components/SlideOver";
 import { selectPostById } from "../../postsSlice";
 import PostHeader from "../components/PostHeader";
-import ModalContent from "../components/ModalContent";
+import DeleteModal from "../components/DeleteModal";
 
 const PostPage = () => {
+  const { id } = useParams();
   const [isSlideOverOpen, setIsSliderOverOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { id } = useParams();
   const post = useSelector((state) => selectPostById(state, parseInt(id)));
-  console.log({ post });
 
   const { title, body } = post || {};
 
@@ -41,7 +40,7 @@ const PostPage = () => {
         <Form setIsSliderOverOpen={setIsSliderOverOpen} defaultValues={post} />
       </SlideOver>
       <Modal isOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
-        <ModalContent setIsModalOpen={setIsModalOpen} />
+        <DeleteModal setIsModalOpen={setIsModalOpen} />
       </Modal>
     </>
   );

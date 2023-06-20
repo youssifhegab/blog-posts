@@ -4,10 +4,11 @@ import { AiOutlineReload } from "react-icons/ai";
 
 import SlideOver from "src/components/SlideOver";
 import Form from "src/components/Form";
-import { selectAllPosts, fetchPosts } from "../../postsSlice";
+import { selectAllPosts } from "../../postsSlice";
 import Post from "../components/Post";
 import PostsHeader from "../components/PostsHeader";
 import Button from "src/components/Button";
+import { fetchPosts } from "../../thunks";
 
 const PostsListPage = () => {
   const [isSlideOverOpen, setIsSliderOverOpen] = useState(false);
@@ -18,13 +19,16 @@ const PostsListPage = () => {
   const { posts, isLoading, error } = postsState || {};
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    if (posts?.length === 0) dispatch(fetchPosts());
   }, []);
 
   return (
     <>
       <div className='relative h-full'>
-        <PostsHeader setIsSliderOverOpen={setIsSliderOverOpen} />
+        <PostsHeader
+          title={<h2 className='font-bold text-2xl'>Posts</h2>}
+          setIsSliderOverOpen={setIsSliderOverOpen}
+        />
         <div className='py-4 px-6 h-full'>
           {error ? (
             <>
@@ -37,7 +41,6 @@ const PostsListPage = () => {
             </>
           ) : (
             <>
-              <h2 className='font-bold text-2xl'>Posts</h2>
               <div className='flex flex-col gap-6 mt-6'>
                 {isLoading
                   ? Array.from([...Array(4)].keys()).map((num) => (
