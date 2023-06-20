@@ -19,7 +19,7 @@ const PostsListPage = () => {
 
   const { posts, isLoading, error } = postsState || {};
 
-  const searchData = posts?.filter((post) => {
+  const filteredData = posts?.filter((post) => {
     if (searchInput === "") {
       return post;
     }
@@ -58,7 +58,7 @@ const PostsListPage = () => {
                   ? Array.from([...Array(4)].keys()).map((num) => (
                       <Post key={num} isLoading={isLoading} />
                     ))
-                  : searchData?.map((post) => (
+                  : filteredData?.map((post) => (
                       <Post key={post.id} post={post} isLoading={isLoading} />
                     ))}
               </div>
