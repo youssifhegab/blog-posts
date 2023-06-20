@@ -7,10 +7,10 @@ const SlideOver = ({ open, setOpen, children }) => {
       <Dialog as='div' className='relative z-40' onClose={setOpen}>
         <Transition.Child
           as={Fragment}
-          enter='ease-in-out duration-500'
+          enter='ease-in-out duration-300'
           enterFrom='opacity-0'
           enterTo='opacity-100'
-          leave='ease-in-out duration-500'
+          leave='ease-in-out duration-300'
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >

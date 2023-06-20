@@ -42,7 +42,7 @@ const Form = ({ setIsSliderOverOpen, defaultValues }) => {
       <input
         {...register("title")}
         placeholder='Write you blog post header'
-        className='bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-green-500 block w-full p-2.5'
+        className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 block w-full p-2.5'
       ></input>
       <textarea
         {...register("body")}
