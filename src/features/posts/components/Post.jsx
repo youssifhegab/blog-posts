@@ -1,9 +1,9 @@
-import { useState } from "react";
 import { ShimmerTitle } from "react-shimmer-effects";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Post = ({ post, isLoading }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const { title, body } = post || {};
+  const { title, body, id } = post || {};
 
   if (isLoading) {
     return (
@@ -14,20 +14,16 @@ const Post = ({ post, isLoading }) => {
   }
 
   return (
-    <div className='w-full bg-white rounded-lg py-4 px-5 shadow-md '>
-      <p className='mb-4 font-semibold text-lg truncate'>{title}</p>
-      <div className='flex text-gray-500'>
-        <p className='inline-block transition ease-in-out delay-150 resize-none'>
-          {`${isExpanded ? body : body.substring(0, 100)}...`}{" "}
-          <p
-            className='inline-block text-black underline decoration-solid cursor-pointer'
-            onClick={() => setIsExpanded((prevState) => !prevState)}
-          >
-            {isExpanded ? "Read less" : "Read more"}
-          </p>
-        </p>
-      </div>
-    </div>
+    <Link to={`post/${id}`}>
+      <motion.div
+        whileHover={{ scale: 1.01 }}
+        transition={{ duration: 0.3 }}
+        className='w-full bg-white rounded-lg py-4 px-5 shadow-md cursor-pointer'
+      >
+        <p className='mb-4 font-semibold text-lg truncate'>{title}</p>
+        <p className='text-gray-500 truncate'>{body}</p>
+      </motion.div>
+    </Link>
   );
 };
 

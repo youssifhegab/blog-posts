@@ -1,11 +1,15 @@
-import PostsList from "./features/posts/components/PostsList";
-import Navbar from "./common/components/navbar";
+import { Route, Routes } from "react-router-dom";
+
+import PostsListPage from "./features/posts/pages/PostsListPage";
+import PostPage from "./features/post/pages/PostPage";
 
 const App = () => {
   return (
-    <div className='relative bg-gray-100'>
-      <Navbar />
-      <PostsList />
+    <div className='h-screen'>
+      <Routes>
+        <Route path='/' element={<PostsListPage />} />
+        <Route path='/post/:id' element={<PostPage />} />
+      </Routes>
     </div>
   );
 };

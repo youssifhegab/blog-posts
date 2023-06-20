@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-const SlideOver = ({ open, setOpen, content }) => {
+const SlideOver = ({ open, setOpen, children }) => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as='div' className='relative z-10' onClose={setOpen}>
@@ -31,7 +31,7 @@ const SlideOver = ({ open, setOpen, content }) => {
               >
                 <Dialog.Panel className='pointer-events-auto relative w-screen max-w-md'>
                   <div className='flex h-full flex-col overflow-y-scroll bg-white shadow-xl'>
-                    {content}
+                    {children}
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
