@@ -1,4 +1,4 @@
-import Button from "../../../components/Button";
+import Button from "src/components/Button";
 
 const ModalContent = ({ setIsModalOpen }) => {
   return (

@@ -8,7 +8,8 @@ const Post = ({ post, isLoading }) => {
   if (isLoading) {
     return (
       <div className='w-full bg-white rounded-lg p-4 shadow-md'>
-        <ShimmerTitle line={2} gap={10} variant='primary' />
+        <ShimmerTitle line={1} className='w-50' variant='primary' />
+        <ShimmerTitle line={1} variant='primary' />
       </div>
     );
   }
@@ -16,7 +17,7 @@ const Post = ({ post, isLoading }) => {
   return (
     <Link to={`post/${id}`}>
       <motion.div
-        whileHover={{ scale: 1.01 }}
+        whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.3 }}
         className='w-full bg-white rounded-lg py-4 px-5 shadow-md cursor-pointer'
       >

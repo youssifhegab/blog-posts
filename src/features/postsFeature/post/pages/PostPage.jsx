@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { selectAllPosts } from "../../posts/postsSlice";
+import Modal from "src/components/Modal";
+import Form from "src/components/Form";
+import SlideOver from "src/components/SlideOver";
+import { selectAllPosts } from "../../postsSlice";
 import PostHeader from "../components/PostHeader";
-import Modal from "../../../components/Modal";
 import ModalContent from "../components/ModalContent";
-import Form from "../../../components/Form";
-import SlideOver from "../../../components/SlideOver";
 
 const PostPage = () => {
   const [isSlideOverOpen, setIsSliderOverOpen] = useState(false);

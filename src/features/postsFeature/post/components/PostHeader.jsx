@@ -3,7 +3,7 @@ import { BsPenFill } from "react-icons/bs";
 import { BiArrowBack } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 
-import Button from "../../../components/Button";
+import Button from "src/components/Button";
 
 const PostHeader = ({ setIsSliderOverOpen, setIsModalOpen }) => {
   const navigate = useNavigate();

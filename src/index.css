@@ -9,6 +9,7 @@ body {
   scroll-behavior: smooth;
   width: 100vw;
   height: 100vh;
+  background-color: rgb(243 244 246);
 }
 
 h1 {
