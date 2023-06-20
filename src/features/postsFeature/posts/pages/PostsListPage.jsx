@@ -16,7 +16,6 @@ const PostsListPage = () => {
   const postsState = useSelector(selectAllPosts);
 
   const { posts, isLoading, error } = postsState || {};
-  console.log({ postsState });
 
   useEffect(() => {
     dispatch(fetchPosts());
